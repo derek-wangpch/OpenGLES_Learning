@@ -15,9 +15,9 @@
 		652288B01EEBFF1B00C5EAE7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652288AF1EEBFF1B00C5EAE7 /* GLKit.framework */; };
 		652288B31EEC07D700C5EAE7 /* shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 652288B21EEC07D700C5EAE7 /* shader.vsh */; };
 		652288B51EEC07FC00C5EAE7 /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 652288B41EEC07FC00C5EAE7 /* shader.fsh */; };
+		6561BC331EF184E800E667CD /* ShaderUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC311EF184E800E667CD /* ShaderUtil.c */; };
 		6577C9C81EEE136800D2020E /* TriangleShaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */; };
 		6577C9CB1EEE13EC00D2020E /* CubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577C9CA1EEE13EC00D2020E /* CubeViewController.m */; };
-		6577C9CE1EEE13F700D2020E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577C9CD1EEE13F700D2020E /* ViewController.m */; };
 		6577C9D21EEF653300D2020E /* tile_floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6577C9D11EEF653300D2020E /* tile_floor.png */; };
 		6579B8A11EEBFB63006F94E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579B8A01EEBFB63006F94E8 /* main.m */; };
 		6579B8A41EEBFB63006F94E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579B8A31EEBFB63006F94E8 /* AppDelegate.m */; };
@@ -40,12 +40,13 @@
 		652288B21EEC07D700C5EAE7 /* shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vsh; path = Shaders/shader.vsh; sourceTree = "<group>"; };
 		652288B41EEC07FC00C5EAE7 /* shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.fsh; path = Shaders/shader.fsh; sourceTree = "<group>"; };
 		652288BF1EEC416500C5EAE7 /* teapot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teapot.h; sourceTree = "<group>"; };
+		6561BC2F1EF183DC00E667CD /* GLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLUtils.h; sourceTree = "<group>"; };
+		6561BC311EF184E800E667CD /* ShaderUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtil.c; sourceTree = "<group>"; };
+		6561BC321EF184E800E667CD /* ShaderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtil.h; sourceTree = "<group>"; };
 		6577C9C61EEE136800D2020E /* TriangleShaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShaderViewController.h; sourceTree = "<group>"; };
 		6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShaderViewController.m; sourceTree = "<group>"; };
 		6577C9C91EEE13EC00D2020E /* CubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeViewController.h; sourceTree = "<group>"; };
 		6577C9CA1EEE13EC00D2020E /* CubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubeViewController.m; sourceTree = "<group>"; };
-		6577C9CC1EEE13F700D2020E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6577C9CD1EEE13F700D2020E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6577C9CF1EEE14C400D2020E /* BaseStructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseStructs.h; sourceTree = "<group>"; };
 		6577C9D11EEF653300D2020E /* tile_floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_floor.png; sourceTree = "<group>"; };
 		6579B89C1EEBFB63006F94E8 /* OpenGLES_Learning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLES_Learning.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,10 +85,6 @@
 				6506BD041EED94B400F25F51 /* TeapotViewController.m */,
 				6577C9C91EEE13EC00D2020E /* CubeViewController.h */,
 				6577C9CA1EEE13EC00D2020E /* CubeViewController.m */,
-				6577C9CC1EEE13F700D2020E /* ViewController.h */,
-				6577C9CD1EEE13F700D2020E /* ViewController.m */,
-				6577C9CF1EEE14C400D2020E /* BaseStructs.h */,
-				652288BF1EEC416500C5EAE7 /* teapot.h */,
 			);
 			name = Demos;
 			sourceTree = "<group>";
@@ -108,6 +105,25 @@
 				652288B41EEC07FC00C5EAE7 /* shader.fsh */,
 			);
 			name = Shaders;
+			sourceTree = "<group>";
+		};
+		6561BC2C1EF183A800E667CD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				652288BF1EEC416500C5EAE7 /* teapot.h */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		6561BC2D1EF183B000E667CD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6577C9CF1EEE14C400D2020E /* BaseStructs.h */,
+				6561BC2F1EF183DC00E667CD /* GLUtils.h */,
+				6561BC311EF184E800E667CD /* ShaderUtil.c */,
+				6561BC321EF184E800E667CD /* ShaderUtil.h */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		6577C9D01EEE15CB00D2020E /* Resouces */ = {
@@ -139,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				6577C9D01EEE15CB00D2020E /* Resouces */,
+				6561BC2D1EF183B000E667CD /* Utils */,
+				6561BC2C1EF183A800E667CD /* Data */,
 				6506BD021EED91EF00F25F51 /* Demos */,
 				652288B11EEC079F00C5EAE7 /* Shaders */,
 				6579B8A21EEBFB63006F94E8 /* AppDelegate.h */,
@@ -237,12 +255,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6577C9CE1EEE13F700D2020E /* ViewController.m in Sources */,
 				6506BD051EED94B400F25F51 /* TeapotViewController.m in Sources */,
 				6506BCFD1EED910600F25F51 /* BaseViewController.m in Sources */,
 				6579B8A41EEBFB63006F94E8 /* AppDelegate.m in Sources */,
 				6577C9C81EEE136800D2020E /* TriangleShaderViewController.m in Sources */,
 				6579B8A11EEBFB63006F94E8 /* main.m in Sources */,
+				6561BC331EF184E800E667CD /* ShaderUtil.c in Sources */,
 				6577C9CB1EEE13EC00D2020E /* CubeViewController.m in Sources */,
 				6506BD001EED91C100F25F51 /* TriangleViewController.m in Sources */,
 				6506BCFA1EED8DBE00F25F51 /* MainViewController.m in Sources */,

@@ -7,9 +7,13 @@
 //
 
 #import "TriangleShaderViewController.h"
+#include "ShaderUtil.h"
 
 @interface TriangleShaderViewController () {
     GLuint vao, vbo;
+    GLuint shaderPrg;
+    GLuint projectionSlot;
+    GLuint modelViewSlot;
 }
 
 @property (nonatomic) GLKBaseEffect *effect;
@@ -20,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.effect = [GLKBaseEffect new];
     [self makeTriangle];
 }
 
@@ -31,9 +36,9 @@
 - (void)makeTriangle {
     Vertex attrArr[] =
     {
-        {{-1, -1, 0}, {1, 0, 0, 1}},  //左上
-        {{1, -1, 0}, {0, 1, 0, 1}},    //顶点
-        {{0, 1, 0}, {0, 0, 1, 1}}    //左下
+        {{-1, -1, 0}, {1, 0, 0, 1}, {0, 0}},  //左上
+        {{1, -1, 0}, {0, 1, 0, 1}, {0, 0}},    //顶点
+        {{0, 1, 0}, {0, 0, 1, 1}, {0, 0}}    //左下
     };
 
     glGenVertexArraysOES(1, &vao);
@@ -46,13 +51,28 @@
     // Copy Data from memory to GPU
     glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    shaderPrg = [self loadShaders];
 
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
+    GLuint posSlot = glGetAttribLocation(shaderPrg, "position");
+    glVertexAttribPointer(posSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    glEnableVertexAttribArray(posSlot);
+
+    GLuint colorSlot = glGetAttribLocation(shaderPrg, "color");
+    glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    glEnableVertexAttribArray(colorSlot);
+
+    projectionSlot = glGetUniformLocation(shaderPrg, "projectionMatrix");
+    modelViewSlot = glGetUniformLocation(shaderPrg, "modelViewMatrix");
 
     glBindVertexArrayOES(0);
+}
+
+- (GLuint)loadShaders {
+    const char *vshFile = [[[NSBundle mainBundle] pathForResource:@"shader" ofType:@"vsh"] cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *fshFile = [[[NSBundle mainBundle] pathForResource:@"shader" ofType:@"fsh"] cStringUsingEncoding:NSASCIIStringEncoding];
+
+    GLuint prgName = loadShaders(vshFile, fshFile);
+    return prgName;
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
@@ -65,6 +85,8 @@
     glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    glUseProgram(shaderPrg);
+
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 1.0f, 10.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
@@ -72,8 +94,13 @@
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 
+    glUniform4fv(projectionSlot, 1, projectionMatrix.m);
+    glUniform4fv(modelViewSlot, 1, modelViewMatrix.m);
+
     glBindVertexArrayOES(vao);
-    [self.effect prepareToDraw];
+
+//    [self.effect prepareToDraw];
+
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 

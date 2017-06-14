@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "TriangleViewController.h"
 #import "TeapotViewController.h"
+#import "TriangleShaderViewController.h"
+#import "CubeViewController.h"
 
 @interface MainViewController ()
 
@@ -32,7 +34,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -49,6 +51,9 @@
             break;
         case 2:
             cell.textLabel.text = @"3 - Triangle with Shader";
+            break;
+        case 3:
+            cell.textLabel.text = @"4 - Cube with texture";
         default:
             break;
     }
@@ -63,10 +68,21 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        default: {
+        case 1: {
             TeapotViewController *vc = [TeapotViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
+            break;
+        case 2: {
+            TriangleShaderViewController *vc = [TriangleShaderViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3: {
+            CubeViewController *vc = [CubeViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        default:
             break;
     }
 }

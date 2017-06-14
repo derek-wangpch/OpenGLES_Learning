@@ -125,7 +125,7 @@ const GLubyte Indices[] = {
 
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-
+    [self drawCube];
 }
 
 - (void)drawCube {
@@ -138,6 +138,7 @@ const GLubyte Indices[] = {
 
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
     modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, GLKMathDegreesToRadians(45));
+    modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(45));
 
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 

@@ -1,12 +1,13 @@
-attribute vec4 pos;
-attribute vec4 posColor;
-
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 
-varying lowp vec4 outColor;
+attribute vec3 position;
+attribute vec4 color;
 
-void main() {
-    outColor = posColor;
-    gl_Position = pos;
+varying vec4 outColor;
+
+void main()
+{
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    outColor = color;
 }
