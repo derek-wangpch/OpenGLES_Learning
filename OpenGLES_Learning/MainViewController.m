@@ -47,10 +47,10 @@
             cell.textLabel.text = @"1 - Triangle";
             break;
         case 1:
-            cell.textLabel.text = @"2 - Teapot";
+            cell.textLabel.text = @"2 - Triangle with Shader";
             break;
         case 2:
-            cell.textLabel.text = @"3 - Triangle with Shader";
+            cell.textLabel.text = @"3 - Teapot";
             break;
         case 3:
             cell.textLabel.text = @"4 - Cube with texture";
@@ -69,12 +69,12 @@
         }
             break;
         case 1: {
-            TeapotViewController *vc = [TeapotViewController new];
+            TriangleShaderViewController *vc = [TriangleShaderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2: {
-            TriangleShaderViewController *vc = [TriangleShaderViewController new];
+            TeapotViewController *vc = [TeapotViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

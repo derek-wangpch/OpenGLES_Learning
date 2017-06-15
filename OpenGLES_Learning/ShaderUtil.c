@@ -108,34 +108,17 @@ GLuint loadShaders(const char *vertexShader, const char *fragShader) {
     if (status == 0)
     {
         printf("Failed to link program");
+        glGetProgramiv(prgName, GL_INFO_LOG_LENGTH, &logLength);
+        if (logLength > 0)
+        {
+            GLchar *log = (GLchar*)malloc(logLength);
+            glGetProgramInfoLog(prgName, logLength, &logLength, log);
+            printf("Program validate log:\n%s\n", log);
+            free(log);
+        }
+        glDeleteProgram(prgName);
         return 0;
     }
-
-    glValidateProgram(prgName);
-
-    glGetProgramiv(prgName, GL_VALIDATE_STATUS, &status);
-    if (status == 0)
-    {
-        // 'status' set to 0 here does NOT indicate the program itself is invalid,
-        //   but rather the state OpenGL was set to when glValidateProgram was called was
-        //   not valid for this program to run (i.e. Given the CURRENT openGL state,
-        //   draw call with this program will fail).  You may still be able to use this
-        //   program if certain OpenGL state is set before a draw is made.  For instance,
-        //   'status' could be 0 because no VAO was bound and so long as one is bound
-        //   before drawing with this program, it will not be an issue.
-        printf("Program cannot run with current OpenGL State");
-    }
-
-    glGetProgramiv(prgName, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0)
-    {
-        GLchar *log = (GLchar*)malloc(logLength);
-        glGetProgramInfoLog(prgName, logLength, &logLength, log);
-        printf("Program validate log:\n%s\n", log);
-        free(log);
-    }
-
-
     return prgName;
 }
 
@@ -150,20 +133,20 @@ GLuint compileShader(ShaderSource *source) {
 
     GLint logLength, status;
 
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
-
-    if (logLength > 0)
-    {
-        GLchar *log = (GLchar*) malloc(logLength);
-        glGetShaderInfoLog(shader, logLength, &logLength, log);
-        printf("Vtx Shader compile log:%s\n", log);
-        free(log);
-    }
 
     glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
     if (status == 0)
     {
         printf("Failed to compile vtx shader:\n%s\n", sourceString);
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+
+        if (logLength > 0)
+        {
+            GLchar *log = (GLchar*) malloc(logLength);
+            glGetShaderInfoLog(shader, logLength, &logLength, log);
+            printf("Vtx Shader compile log:%s\n", log);
+            free(log);
+        }
         return 0;
     }
 

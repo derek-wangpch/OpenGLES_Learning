@@ -58,7 +58,7 @@
     glEnableVertexAttribArray(posSlot);
 
     GLuint colorSlot = glGetAttribLocation(shaderPrg, "color");
-    glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     glEnableVertexAttribArray(colorSlot);
 
     projectionSlot = glGetUniformLocation(shaderPrg, "projectionMatrix");
@@ -85,6 +85,13 @@
     glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    [self updateMVPMatrix];
+
+    glBindVertexArrayOES(vao);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+- (void)updateMVPMatrix {
     glUseProgram(shaderPrg);
 
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
@@ -94,14 +101,8 @@
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 
-    glUniform4fv(projectionSlot, 1, projectionMatrix.m);
-    glUniform4fv(modelViewSlot, 1, modelViewMatrix.m);
-
-    glBindVertexArrayOES(vao);
-
-//    [self.effect prepareToDraw];
-
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUniformMatrix4fv(projectionSlot, 1, GL_FALSE,projectionMatrix.m);
+    glUniformMatrix4fv(modelViewSlot, 1, GL_FALSE, modelViewMatrix.m);
 }
 
 - (void)dealloc {
