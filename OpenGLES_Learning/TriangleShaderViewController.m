@@ -14,6 +14,8 @@
     GLuint shaderPrg;
     GLuint projectionSlot;
     GLuint modelViewSlot;
+
+    float rotZ;
 }
 
 @property (nonatomic) GLKBaseEffect *effect;
@@ -36,9 +38,9 @@
 - (void)makeTriangle {
     Vertex attrArr[] =
     {
-        {{-1, -1, 0}, {1, 0, 0, 1}, {0, 0}},  //左上
-        {{1, -1, 0}, {0, 1, 0, 1}, {0, 0}},    //顶点
-        {{0, 1, 0}, {0, 0, 1, 1}, {0, 0}}    //左下
+        {{-1, -1, 0}, {1, 0, 0}, {0, 0}},  //左上
+        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //顶点
+        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //左下
     };
 
     glGenVertexArraysOES(1, &vao);
@@ -58,7 +60,7 @@
     glEnableVertexAttribArray(posSlot);
 
     GLuint colorSlot = glGetAttribLocation(shaderPrg, "color");
-    glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
+    glVertexAttribPointer(colorSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     glEnableVertexAttribArray(colorSlot);
 
     projectionSlot = glGetUniformLocation(shaderPrg, "projectionMatrix");
@@ -99,6 +101,8 @@
     self.effect.transform.projectionMatrix = projectionMatrix;
 
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
+    rotZ += 1.0f;
+    modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(rotZ));
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 
     glUniformMatrix4fv(projectionSlot, 1, GL_FALSE,projectionMatrix.m);

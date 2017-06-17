@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLRender.h"
 
 @interface OpenGLESView : UIView
+
+- (instancetype)initWithFrame:(CGRect)frame render:(GLRender *)render;
+- (void)startAnimating;
+- (void)stopAnimating;
 
 @end

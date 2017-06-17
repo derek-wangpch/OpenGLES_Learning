@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="Oix-Bs-bOP" id="wIp-8W-mdc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ieJ-fD-RlO"/>
+                    <navigationItem key="navigationItem" title="OpenGLES Tutorials" id="ieJ-fD-RlO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSZ-Iv-fnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

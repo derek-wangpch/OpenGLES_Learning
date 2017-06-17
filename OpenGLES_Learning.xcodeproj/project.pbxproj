@@ -17,6 +17,9 @@
 		652288B51EEC07FC00C5EAE7 /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 652288B41EEC07FC00C5EAE7 /* shader.fsh */; };
 		6561BC331EF184E800E667CD /* ShaderUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC311EF184E800E667CD /* ShaderUtil.c */; };
 		6561BC361EF2CDDE00E667CD /* OpenGLESView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC351EF2CDDE00E667CD /* OpenGLESView.m */; };
+		6561BC421EF53B3500E667CD /* TriangleRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC411EF53B3500E667CD /* TriangleRenderViewController.m */; };
+		6561BC461EF53E8500E667CD /* GLRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC451EF53E8500E667CD /* GLRender.m */; };
+		6561BC491EF544D100E667CD /* TriangleRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561BC481EF544D100E667CD /* TriangleRender.m */; };
 		6577C9C81EEE136800D2020E /* TriangleShaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */; };
 		6577C9CB1EEE13EC00D2020E /* CubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577C9CA1EEE13EC00D2020E /* CubeViewController.m */; };
 		6577C9D21EEF653300D2020E /* tile_floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6577C9D11EEF653300D2020E /* tile_floor.png */; };
@@ -46,6 +49,12 @@
 		6561BC321EF184E800E667CD /* ShaderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtil.h; sourceTree = "<group>"; };
 		6561BC341EF2CDDE00E667CD /* OpenGLESView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLESView.h; sourceTree = "<group>"; };
 		6561BC351EF2CDDE00E667CD /* OpenGLESView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLESView.m; sourceTree = "<group>"; };
+		6561BC401EF53B3500E667CD /* TriangleRenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleRenderViewController.h; sourceTree = "<group>"; };
+		6561BC411EF53B3500E667CD /* TriangleRenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleRenderViewController.m; sourceTree = "<group>"; };
+		6561BC441EF53E8500E667CD /* GLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRender.h; sourceTree = "<group>"; };
+		6561BC451EF53E8500E667CD /* GLRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRender.m; sourceTree = "<group>"; };
+		6561BC471EF544D100E667CD /* TriangleRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleRender.h; sourceTree = "<group>"; };
+		6561BC481EF544D100E667CD /* TriangleRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleRender.m; sourceTree = "<group>"; };
 		6577C9C61EEE136800D2020E /* TriangleShaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShaderViewController.h; sourceTree = "<group>"; };
 		6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShaderViewController.m; sourceTree = "<group>"; };
 		6577C9C91EEE13EC00D2020E /* CubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeViewController.h; sourceTree = "<group>"; };
@@ -78,6 +87,7 @@
 		6506BD021EED91EF00F25F51 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				659CFE441EF54F1B00E9EAC5 /* Renders */,
 				6506BCFB1EED910600F25F51 /* BaseViewController.h */,
 				6506BCFC1EED910600F25F51 /* BaseViewController.m */,
 				6506BCFE1EED91C100F25F51 /* TriangleViewController.h */,
@@ -88,8 +98,8 @@
 				6506BD041EED94B400F25F51 /* TeapotViewController.m */,
 				6577C9C91EEE13EC00D2020E /* CubeViewController.h */,
 				6577C9CA1EEE13EC00D2020E /* CubeViewController.m */,
-				6561BC341EF2CDDE00E667CD /* OpenGLESView.h */,
-				6561BC351EF2CDDE00E667CD /* OpenGLESView.m */,
+				6561BC401EF53B3500E667CD /* TriangleRenderViewController.h */,
+				6561BC411EF53B3500E667CD /* TriangleRenderViewController.m */,
 			);
 			name = Demos;
 			sourceTree = "<group>";
@@ -185,6 +195,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		659CFE441EF54F1B00E9EAC5 /* Renders */ = {
+			isa = PBXGroup;
+			children = (
+				6561BC341EF2CDDE00E667CD /* OpenGLESView.h */,
+				6561BC351EF2CDDE00E667CD /* OpenGLESView.m */,
+				6561BC441EF53E8500E667CD /* GLRender.h */,
+				6561BC451EF53E8500E667CD /* GLRender.m */,
+				6561BC471EF544D100E667CD /* TriangleRender.h */,
+				6561BC481EF544D100E667CD /* TriangleRender.m */,
+			);
+			name = Renders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,8 +285,11 @@
 			files = (
 				6506BD051EED94B400F25F51 /* TeapotViewController.m in Sources */,
 				6561BC361EF2CDDE00E667CD /* OpenGLESView.m in Sources */,
+				6561BC421EF53B3500E667CD /* TriangleRenderViewController.m in Sources */,
 				6506BCFD1EED910600F25F51 /* BaseViewController.m in Sources */,
 				6579B8A41EEBFB63006F94E8 /* AppDelegate.m in Sources */,
+				6561BC461EF53E8500E667CD /* GLRender.m in Sources */,
+				6561BC491EF544D100E667CD /* TriangleRender.m in Sources */,
 				6577C9C81EEE136800D2020E /* TriangleShaderViewController.m in Sources */,
 				6579B8A11EEBFB63006F94E8 /* main.m in Sources */,
 				6561BC331EF184E800E667CD /* ShaderUtil.c in Sources */,

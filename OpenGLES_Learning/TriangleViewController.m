@@ -33,9 +33,9 @@
 - (void)makeTriangle {
     Vertex attrArr[] =
     {
-        {{-1, -1, 0}, {1, 0, 0, 1}, {0, 0}},  //左上
-        {{1, -1, 0}, {0, 1, 0, 1}, {0, 0}},    //顶点
-        {{0, 1, 0}, {0, 0, 1, 1}, {0, 0}}    //左下
+        {{-1, -1, 0}, {1, 0, 0}, {0, 0}},  //左上
+        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //顶点
+        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //左下
     };
 
     glGenVertexArraysOES(1, &vao);
@@ -52,7 +52,7 @@
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
 
     glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
+    glVertexAttribPointer(GLKVertexAttribColor, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
 
     glBindVertexArrayOES(0);
 }

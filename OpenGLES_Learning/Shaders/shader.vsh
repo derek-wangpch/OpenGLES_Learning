@@ -2,9 +2,9 @@ uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 
 attribute vec3 position;
-attribute vec4 color;
+attribute vec3 color;
 
-varying vec4 outColor;
+varying vec3 outColor;
 
 void main()
 {

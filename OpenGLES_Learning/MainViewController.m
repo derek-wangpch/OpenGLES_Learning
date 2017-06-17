@@ -11,6 +11,7 @@
 #import "TeapotViewController.h"
 #import "TriangleShaderViewController.h"
 #import "CubeViewController.h"
+#import "TriangleRenderViewController.h"
 
 @interface MainViewController ()
 
@@ -69,7 +70,11 @@
         }
             break;
         case 1: {
+            /*
             TriangleShaderViewController *vc = [TriangleShaderViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+             */
+            TriangleRenderViewController *vc = [TriangleRenderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
