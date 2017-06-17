@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
-#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES3/gl.h>
 
 @interface GLRender : NSObject
 
 @property (nonatomic, weak) EAGLContext *context;
-@property (nonatomic, readonly) GLuint renderWidth;
-@property (nonatomic, readonly) GLuint renderHeight;
+@property (nonatomic, readonly) GLint renderWidth;
+@property (nonatomic, readonly) GLint renderHeight;
+@property (nonatomic, readonly) GLuint defaultFBO;
 
 - (void)bindEAGLContext:(EAGLContext *)context drawable:(id<EAGLDrawable>)drawable;
 - (void)setup;
 - (void)render;
-- (void)resizeWithWidth:(GLuint)width height:(GLuint)height;
+- (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
+- (void)renderContent; // For subclass to override, render content only
 
 @end

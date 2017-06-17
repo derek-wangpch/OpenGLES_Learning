@@ -42,9 +42,7 @@
 
 - (void)layoutSubviews
 {
-    [EAGLContext setCurrentContext:_context];
-
-    [_glRender resizeWithWidth:self.bounds.size.width height:self.bounds.size.height];
+    [_glRender resizeFromLayer:(CAEAGLLayer *)self.layer];
     [self render];
 }
 
@@ -92,13 +90,14 @@
 }
 
 - (void)render {
+    [EAGLContext setCurrentContext:_context];
     [_glRender render];
-    //将指定 renderbuffer 呈现在屏幕上，在这里我们指定的是前面已经绑定为当前 renderbuffer 的那个，在 renderbuffer 可以被呈现之前，必须调用renderbufferStorage:fromDrawable: 为之分配存储空间。
-    [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 - (void)dealloc {
     [self stopAnimating];
+    if ([EAGLContext currentContext] == _context)
+        [EAGLContext setCurrentContext:nil];
 }
 
 
