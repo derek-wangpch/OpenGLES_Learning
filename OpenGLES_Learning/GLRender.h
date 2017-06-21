@@ -22,5 +22,7 @@
 - (void)render;
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
 - (void)renderContent; // For subclass to override, render content only
+- (void)destroyVAO:(GLuint) vaoName;
+-(void) destroyFBO:(GLuint)fboName;
 
 @end

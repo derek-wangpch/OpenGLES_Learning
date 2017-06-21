@@ -39,8 +39,8 @@
     Vertex attrArr[] =
     {
         {{-1, -1, 0}, {1, 0, 0}, {0, 0}},  //左上
-        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //顶点
-        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //左下
+        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //右下
+        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //顶点
     };
 
     glGenVertexArraysOES(1, &vao);
@@ -55,16 +55,16 @@
 
     shaderPrg = [self loadShaders];
 
-    GLuint posSlot = glGetAttribLocation(shaderPrg, "position");
+    GLuint posSlot = glGetAttribLocation(shaderPrg, "aPosition");
     glVertexAttribPointer(posSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
     glEnableVertexAttribArray(posSlot);
 
-    GLuint colorSlot = glGetAttribLocation(shaderPrg, "color");
+    GLuint colorSlot = glGetAttribLocation(shaderPrg, "aColor");
     glVertexAttribPointer(colorSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     glEnableVertexAttribArray(colorSlot);
 
-    projectionSlot = glGetUniformLocation(shaderPrg, "projectionMatrix");
-    modelViewSlot = glGetUniformLocation(shaderPrg, "modelViewMatrix");
+    projectionSlot = glGetUniformLocation(shaderPrg, "uProjectionMatrix");
+    modelViewSlot = glGetUniformLocation(shaderPrg, "uModelViewMatrix");
 
     glBindVertexArrayOES(0);
 }

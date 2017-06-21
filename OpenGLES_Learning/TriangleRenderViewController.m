@@ -9,6 +9,7 @@
 #import "TriangleRenderViewController.h"
 #import "OpenGLESView.h"
 #import "TriangleRender.h"
+#import "TeapotRender.h"
 
 @interface TriangleRenderViewController ()
 
@@ -22,7 +23,7 @@
     TriangleRender *render = [TriangleRender new];
     OpenGLESView *glView = [[OpenGLESView alloc] initWithFrame:self.view.bounds render:render];
     self.view = glView;
-    [glView startAnimating];
+    //[glView startAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,14 +31,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc {
+    [(OpenGLESView *)self.view stopAnimating];
 }
-*/
 
 @end

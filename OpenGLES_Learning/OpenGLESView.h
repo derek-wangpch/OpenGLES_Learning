@@ -12,6 +12,9 @@
 @interface OpenGLESView : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame render:(GLRender *)render;
+
+@property (nonatomic) BOOL isAnimating;
+
 - (void)startAnimating;
 - (void)stopAnimating;
 

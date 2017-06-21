@@ -9,13 +9,16 @@
 #import "TeapotViewController.h"
 #import "teapot.h"
 
-#define kTeapotScale		3.0
+#define kTeapotScale		4.0
 
 @interface TeapotViewController () {
     GLuint vao, vbo, vboN;
+    GLfloat         rotate;
 }
 
 @property (nonatomic) GLKBaseEffect *effect;
+
+@property (nonatomic) BOOL isAnimating;
 
 @end
 
@@ -25,6 +28,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeTeapot];
+
+    rotate = 30.0;
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,9 +50,11 @@
     effect.material.shininess = 100.0;
     // light0
     effect.light0.enabled = GL_TRUE;
+    effect.light0.position = GLKVector4Make(0.0, 0.0, 1.0, 0.0);
     effect.light0.ambientColor = GLKVector4Make(0.2, 0.2, 0.2, 1.0);
     effect.light0.diffuseColor = GLKVector4Make(0.2, 0.7, 0.2, 1.0);
-    effect.light0.position = GLKVector4Make(0.0, 0.0, 1.0, 0.0);
+    effect.light0.specularColor =  GLKVector4Make(1.0, 1.0, 1.0, 1.0);
+
 
     GLuint vertexArray, vertexBuffer, normalBuffer;
 
@@ -89,7 +99,10 @@
     GLKMatrix4 modelView = GLKMatrix4MakeTranslation(0, 0, -4.0f);
     modelView = GLKMatrix4Scale(modelView, kTeapotScale, kTeapotScale, kTeapotScale);
 
-    modelView = GLKMatrix4Rotate(modelView, GLKMathDegreesToRadians(30.0f), 1, 0, 0);
+    if (self.isAnimating) {
+        rotate += 1.0f;
+    }
+    modelView = GLKMatrix4Rotate(modelView, GLKMathDegreesToRadians(rotate), 1, 0, 0);
 
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
 
@@ -112,6 +125,10 @@
     }
     if(start < num_teapot_indices)
         glDrawElements(GL_TRIANGLE_STRIP, i - start - 1, GL_UNSIGNED_SHORT, &teapot_indices[start]);
+}
+
+- (void)onTapView:(UITapGestureRecognizer *)tap {
+    self.isAnimating = !self.isAnimating;
 }
 
 - (void)dealloc {

@@ -17,6 +17,7 @@
     GLuint          _program;
     GLuint          vao, vbo;
     GLfloat         rotationZ;
+    GLuint          uProjectionMatrix, uModelViewMatrix;
 }
 
 @end
@@ -24,6 +25,8 @@
 @implementation TriangleRender
 
 - (void)setup {
+    [super setup];
+    glDisable(GL_DEPTH_TEST);
     [self loadShaders];
     [self makeTriangle];
 }
@@ -33,14 +36,17 @@
     const char *fshFile = [[[NSBundle mainBundle] pathForResource:@"shader" ofType:@"fsh"] cStringUsingEncoding:NSASCIIStringEncoding];
     _program = loadShaders(vshFile, fshFile);
     glUseProgram(_program);
+
+    uProjectionMatrix = glGetUniformLocation(_program, "uProjectionMatrix");
+    uModelViewMatrix = glGetUniformLocation(_program, "uModelViewMatrix");
 }
 
 - (void)makeTriangle {
     Vertex attrArr[] =
     {
-        {{-1, -1, 0}, {1, 0, 0}, {0, 0}},  //左上
-        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //顶点
-        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //左下
+        {{-1, -1, 0}, {1, 0, 0}, {0, 0}},  //左下
+        {{1, -1, 0}, {0, 1, 0}, {0, 0}},    //右下
+        {{0, 1, 0}, {0, 0, 1}, {0, 0}}    //顶点
     };
 
     glGenVertexArraysOES(1, &vao);
@@ -53,11 +59,11 @@
     // Copy Data from memory to GPU
     glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_STATIC_DRAW);
 
-    GLuint posSlot = glGetAttribLocation(_program, "position");
+    GLuint posSlot = glGetAttribLocation(_program, "aPosition");
     glVertexAttribPointer(posSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
     glEnableVertexAttribArray(posSlot);
 
-    GLuint colorSlot = glGetAttribLocation(_program, "color");
+    GLuint colorSlot = glGetAttribLocation(_program, "aColor");
     glVertexAttribPointer(colorSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     glEnableVertexAttribArray(colorSlot);
 
@@ -79,10 +85,8 @@
 
     modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, GLKMathDegreesToRadians(rotationZ));
 
-    GLuint projectionSlot = glGetUniformLocation(_program, "projectionMatrix");
-    GLuint modelViewSlot = glGetUniformLocation(_program, "modelViewMatrix");
-    glUniformMatrix4fv(projectionSlot, 1, GL_FALSE,projectionMatrix.m);
-    glUniformMatrix4fv(modelViewSlot, 1, GL_FALSE, modelViewMatrix.m);
+    glUniformMatrix4fv(uProjectionMatrix, 1, GL_FALSE,projectionMatrix.m);
+    glUniformMatrix4fv(uModelViewMatrix, 1, GL_FALSE, modelViewMatrix.m);
 
     glBindVertexArrayOES(vao);
     //[self setupVertexData];
@@ -90,9 +94,8 @@
 }
 
 - (void)dealloc {
-    glDeleteBuffers(1, &vbo);
-    glDeleteVertexArraysOES(1, &vao);
     glDeleteProgram(_program);
+    [self destroyVAO:vao];
 }
 
 @end

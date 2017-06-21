@@ -117,8 +117,13 @@ GLuint loadShaders(const char *vertexShader, const char *fragShader) {
             free(log);
         }
         glDeleteProgram(prgName);
+
+        destroySource(vertexSource);
+        destroySource(fragSource);
         return 0;
     }
+    destroySource(vertexSource);
+    destroySource(fragSource);
     return prgName;
 }
 

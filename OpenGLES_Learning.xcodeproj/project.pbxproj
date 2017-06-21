@@ -28,6 +28,11 @@
 		6579B8AA1EEBFB63006F94E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6579B8A81EEBFB63006F94E8 /* Main.storyboard */; };
 		6579B8AC1EEBFB63006F94E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6579B8AB1EEBFB63006F94E8 /* Assets.xcassets */; };
 		6579B8AF1EEBFB63006F94E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6579B8AD1EEBFB63006F94E8 /* LaunchScreen.storyboard */; };
+		659CFE461EF65B6C00E9EAC5 /* PhongShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 659CFE451EF65B6C00E9EAC5 /* PhongShader.vsh */; };
+		659CFE481EF65B7900E9EAC5 /* PhongShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 659CFE471EF65B7900E9EAC5 /* PhongShader.fsh */; };
+		659CFE4B1EF67EB500E9EAC5 /* TeapotRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 659CFE4A1EF67EB500E9EAC5 /* TeapotRender.m */; };
+		659CFE4D1EF67F9200E9EAC5 /* teapot.c in Sources */ = {isa = PBXBuildFile; fileRef = 659CFE4C1EF67F9200E9EAC5 /* teapot.c */; };
+		659CFE501EF8265C00E9EAC5 /* TeapotPhongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659CFE4F1EF8265C00E9EAC5 /* TeapotPhongViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,13 @@
 		6579B8AB1EEBFB63006F94E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6579B8AE1EEBFB63006F94E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6579B8B01EEBFB63006F94E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		659CFE451EF65B6C00E9EAC5 /* PhongShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PhongShader.vsh; sourceTree = "<group>"; };
+		659CFE471EF65B7900E9EAC5 /* PhongShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PhongShader.fsh; sourceTree = "<group>"; };
+		659CFE491EF67EB500E9EAC5 /* TeapotRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeapotRender.h; sourceTree = "<group>"; };
+		659CFE4A1EF67EB500E9EAC5 /* TeapotRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeapotRender.m; sourceTree = "<group>"; };
+		659CFE4C1EF67F9200E9EAC5 /* teapot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = teapot.c; sourceTree = "<group>"; };
+		659CFE4E1EF8265C00E9EAC5 /* TeapotPhongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeapotPhongViewController.h; sourceTree = "<group>"; };
+		659CFE4F1EF8265C00E9EAC5 /* TeapotPhongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeapotPhongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,19 +99,18 @@
 		6506BD021EED91EF00F25F51 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				659CFE541EFAB91C00E9EAC5 /* Tutorial 1 */,
+				659CFE551EFAB92C00E9EAC5 /* Tutorial 2 */,
+				659CFE561EFAB97400E9EAC5 /* Tutoriai 3 */,
+				659CFE571EFABA4400E9EAC5 /* Tutorial 4 */,
+				659CFE581EFABB1100E9EAC5 /* Tutorial 5 */,
 				659CFE441EF54F1B00E9EAC5 /* Renders */,
 				6506BCFB1EED910600F25F51 /* BaseViewController.h */,
 				6506BCFC1EED910600F25F51 /* BaseViewController.m */,
-				6506BCFE1EED91C100F25F51 /* TriangleViewController.h */,
-				6506BCFF1EED91C100F25F51 /* TriangleViewController.m */,
-				6577C9C61EEE136800D2020E /* TriangleShaderViewController.h */,
-				6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */,
-				6506BD031EED94B400F25F51 /* TeapotViewController.h */,
-				6506BD041EED94B400F25F51 /* TeapotViewController.m */,
-				6577C9C91EEE13EC00D2020E /* CubeViewController.h */,
-				6577C9CA1EEE13EC00D2020E /* CubeViewController.m */,
-				6561BC401EF53B3500E667CD /* TriangleRenderViewController.h */,
-				6561BC411EF53B3500E667CD /* TriangleRenderViewController.m */,
+				6561BC341EF2CDDE00E667CD /* OpenGLESView.h */,
+				6561BC351EF2CDDE00E667CD /* OpenGLESView.m */,
+				6561BC441EF53E8500E667CD /* GLRender.h */,
+				6561BC451EF53E8500E667CD /* GLRender.m */,
 			);
 			name = Demos;
 			sourceTree = "<group>";
@@ -118,6 +129,8 @@
 			children = (
 				652288B21EEC07D700C5EAE7 /* shader.vsh */,
 				652288B41EEC07FC00C5EAE7 /* shader.fsh */,
+				659CFE451EF65B6C00E9EAC5 /* PhongShader.vsh */,
+				659CFE471EF65B7900E9EAC5 /* PhongShader.fsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -126,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				652288BF1EEC416500C5EAE7 /* teapot.h */,
+				659CFE4C1EF67F9200E9EAC5 /* teapot.c */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -198,14 +212,59 @@
 		659CFE441EF54F1B00E9EAC5 /* Renders */ = {
 			isa = PBXGroup;
 			children = (
-				6561BC341EF2CDDE00E667CD /* OpenGLESView.h */,
-				6561BC351EF2CDDE00E667CD /* OpenGLESView.m */,
-				6561BC441EF53E8500E667CD /* GLRender.h */,
-				6561BC451EF53E8500E667CD /* GLRender.m */,
+			);
+			name = Renders;
+			sourceTree = "<group>";
+		};
+		659CFE541EFAB91C00E9EAC5 /* Tutorial 1 */ = {
+			isa = PBXGroup;
+			children = (
+				6506BCFE1EED91C100F25F51 /* TriangleViewController.h */,
+				6506BCFF1EED91C100F25F51 /* TriangleViewController.m */,
+			);
+			name = "Tutorial 1";
+			sourceTree = "<group>";
+		};
+		659CFE551EFAB92C00E9EAC5 /* Tutorial 2 */ = {
+			isa = PBXGroup;
+			children = (
+				6577C9C61EEE136800D2020E /* TriangleShaderViewController.h */,
+				6577C9C71EEE136800D2020E /* TriangleShaderViewController.m */,
+				6561BC401EF53B3500E667CD /* TriangleRenderViewController.h */,
+				6561BC411EF53B3500E667CD /* TriangleRenderViewController.m */,
 				6561BC471EF544D100E667CD /* TriangleRender.h */,
 				6561BC481EF544D100E667CD /* TriangleRender.m */,
 			);
-			name = Renders;
+			name = "Tutorial 2";
+			sourceTree = "<group>";
+		};
+		659CFE561EFAB97400E9EAC5 /* Tutoriai 3 */ = {
+			isa = PBXGroup;
+			children = (
+				6506BD031EED94B400F25F51 /* TeapotViewController.h */,
+				6506BD041EED94B400F25F51 /* TeapotViewController.m */,
+			);
+			name = "Tutoriai 3";
+			sourceTree = "<group>";
+		};
+		659CFE571EFABA4400E9EAC5 /* Tutorial 4 */ = {
+			isa = PBXGroup;
+			children = (
+				659CFE4E1EF8265C00E9EAC5 /* TeapotPhongViewController.h */,
+				659CFE4F1EF8265C00E9EAC5 /* TeapotPhongViewController.m */,
+				659CFE491EF67EB500E9EAC5 /* TeapotRender.h */,
+				659CFE4A1EF67EB500E9EAC5 /* TeapotRender.m */,
+			);
+			name = "Tutorial 4";
+			sourceTree = "<group>";
+		};
+		659CFE581EFABB1100E9EAC5 /* Tutorial 5 */ = {
+			isa = PBXGroup;
+			children = (
+				6577C9C91EEE13EC00D2020E /* CubeViewController.h */,
+				6577C9CA1EEE13EC00D2020E /* CubeViewController.m */,
+			);
+			name = "Tutorial 5";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,11 +327,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				652288B51EEC07FC00C5EAE7 /* shader.fsh in Resources */,
+				659CFE461EF65B6C00E9EAC5 /* PhongShader.vsh in Resources */,
 				652288B31EEC07D700C5EAE7 /* shader.vsh in Resources */,
 				6579B8AF1EEBFB63006F94E8 /* LaunchScreen.storyboard in Resources */,
 				6579B8AC1EEBFB63006F94E8 /* Assets.xcassets in Resources */,
 				6577C9D21EEF653300D2020E /* tile_floor.png in Resources */,
 				6579B8AA1EEBFB63006F94E8 /* Main.storyboard in Resources */,
+				659CFE481EF65B7900E9EAC5 /* PhongShader.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,12 +346,15 @@
 			files = (
 				6506BD051EED94B400F25F51 /* TeapotViewController.m in Sources */,
 				6561BC361EF2CDDE00E667CD /* OpenGLESView.m in Sources */,
+				659CFE4B1EF67EB500E9EAC5 /* TeapotRender.m in Sources */,
 				6561BC421EF53B3500E667CD /* TriangleRenderViewController.m in Sources */,
 				6506BCFD1EED910600F25F51 /* BaseViewController.m in Sources */,
 				6579B8A41EEBFB63006F94E8 /* AppDelegate.m in Sources */,
 				6561BC461EF53E8500E667CD /* GLRender.m in Sources */,
 				6561BC491EF544D100E667CD /* TriangleRender.m in Sources */,
 				6577C9C81EEE136800D2020E /* TriangleShaderViewController.m in Sources */,
+				659CFE4D1EF67F9200E9EAC5 /* teapot.c in Sources */,
+				659CFE501EF8265C00E9EAC5 /* TeapotPhongViewController.m in Sources */,
 				6579B8A11EEBFB63006F94E8 /* main.m in Sources */,
 				6561BC331EF184E800E667CD /* ShaderUtil.c in Sources */,
 				6577C9CB1EEE13EC00D2020E /* CubeViewController.m in Sources */,

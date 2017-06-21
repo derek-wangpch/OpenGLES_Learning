@@ -16,9 +16,8 @@
     EAGLContext     *_context;
 }
 
-@property (nonatomic) BOOL isAnimating;
-@property (nonatomic) CADisplayLink *displayLink;
 @property (nonatomic) GLRender* glRender;
+@property (nonatomic) CADisplayLink *displayLink;
 
 @end
 
@@ -31,11 +30,19 @@
 
 - (instancetype)initWithFrame:(CGRect)frame render:(GLRender *)render{
     if (self = [super initWithFrame:frame]) {
-        self.glRender = render;
         [self setupLayer];
         [self setupContext];
+        self.glRender = render;
         [_glRender bindEAGLContext:_context drawable:_eaglLayer];
         [_glRender setup];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupLayer];
+        [self setupContext];
     }
     return self;
 }
@@ -59,16 +66,19 @@
     if (_isAnimating) {
         [self.displayLink invalidate];
         self.displayLink = nil;
+        _isAnimating = NO;
     }
 }
 
 - (void)setupLayer {
     _eaglLayer = (CAEAGLLayer *)self.layer;
-    _eaglLayer.opaque = YES;
+    _eaglLayer.opaque = NO;
     _eaglLayer.drawableProperties = @{
                                       kEAGLDrawablePropertyRetainedBacking : @(NO),
                                       kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8
                                       };
+    // xxx: Must set content scale here!!
+    _eaglLayer.contentsScale = [[UIScreen mainScreen] scale];
 }
 
 - (void)setupContext {
@@ -95,7 +105,6 @@
 }
 
 - (void)dealloc {
-    [self stopAnimating];
     if ([EAGLContext currentContext] == _context)
         [EAGLContext setCurrentContext:nil];
 }
